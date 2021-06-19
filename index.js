@@ -3,12 +3,12 @@ const express = require('express')
 const morgan = require('morgan')
 const db = require('./database')
 const expressLayouts = require('express-ejs-layouts')
-require('dotenv').config()
+const session = require('express-session')
 // ROUTES
 const homeRouter = require('./routes/home')
 
 //uncomment to start working on each route
-//const loginRouter = require('./routes/login')             
+const loginRouter = require('./routes/login')             
 //const logoutRouter = require('./routes/logout')
 //const signupRouter = require('./routes/signup')
 //const errRouter = require('./routes/404')
@@ -30,8 +30,20 @@ app.use(morgan('dev'))
 // port
 const PORT = process.env.PORT || 3000
 
+// session setup
+app.use(session({
+  cookie: {
+    maxAge: 1000 * 60 * 60, // 1 hour
+  },
+  name: 'mcoffee_sid',
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+}))
+
+
 app.use('/', homeRouter)
-//app.use('/login', loginRouter)
+app.use('/login', loginRouter)
 //app.use('/logout', logoutRouter)
 //app.use('/signup', signupRouter)
 //app.use('*', errRouter)
