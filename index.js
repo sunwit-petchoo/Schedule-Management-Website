@@ -11,6 +11,7 @@ const homeRouter = require('./routes/home')
 const loginRouter = require('./routes/login')             
 const logoutRouter = require('./routes/logout')
 //const signupRouter = require('./routes/signup')
+const userRouter = require('./routes/user')
 //const errRouter = require('./routes/404')
 
 const app = express()
@@ -46,6 +47,7 @@ app.use('/', homeRouter)
 app.use('/login', loginRouter)
 app.use('/logout', logoutRouter)
 //app.use('/signup', signupRouter)
+app.use('/user', logoutRouter)
 //app.use('*', errRouter)
 
 

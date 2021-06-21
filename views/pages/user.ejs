@@ -1,0 +1,46 @@
+<h2>Schedule List</h2>
+    <div>
+        <p><strong>First name:</strong></p>
+        <p><strong>Last name:</strong></p>
+        <p><strong>Email address:</strong></p>
+    </div>
+    <table id = "scheduleList">
+        <tr>
+          <th>Day</th>
+          <th>Start at</th>
+          <th>End at</th>
+        </tr>
+        <% schedules.forEach((schedule)=>{%>
+        <tr>
+          <% switch (schedule.day) {
+            case 1: %>
+            <td>Monday</td>
+          <% break;
+            case 2: %>
+            <td>Tuesday</td>
+          <% break;
+            case 3: %>
+            <td>Wednesday</td>
+            <% break;
+            case 4: %>
+            <td>Thursday</td>
+            <% break;
+            case 5: %>
+            <td>Friday</td>
+          <% break;
+          case 6: %>
+            <td>Saturday</td>
+          <% break;
+          case 7: %>
+            <td>Sunday</td>
+          <% break;
+            default:
+            break; } %>
+          <td><%= schedule.start_at %></td>
+          <td><%= schedule.end_at %></td>
+        </tr>
+        <% }) %> 
+      </table>
+      <% } else { %>
+      <h2>There is no schedule</h2>
+      <% } %>
