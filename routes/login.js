@@ -30,7 +30,6 @@ router.post('/', redirectToHome, (req, res) =>{
         }else{
             res.redirect('/login?message=Incorrect%20login%20details.')
         }
-        
     })
     .catch((err) => {
       // couldn't query the database properly

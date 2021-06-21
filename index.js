@@ -9,7 +9,7 @@ const homeRouter = require('./routes/home')
 
 //uncomment to start working on each route
 const loginRouter = require('./routes/login')             
-//const logoutRouter = require('./routes/logout')
+const logoutRouter = require('./routes/logout')
 //const signupRouter = require('./routes/signup')
 //const errRouter = require('./routes/404')
 
@@ -44,7 +44,7 @@ app.use(session({
 
 app.use('/', homeRouter)
 app.use('/login', loginRouter)
-//app.use('/logout', logoutRouter)
+app.use('/logout', logoutRouter)
 //app.use('/signup', signupRouter)
 //app.use('*', errRouter)
 
