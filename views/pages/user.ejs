@@ -1,8 +1,8 @@
-<h2>Schedule List</h2>
+<h2><%= schedules[0].first_name %>'s details and schedules</h2>
     <div>
-        <p><strong>First name:</strong></p>
-        <p><strong>Last name:</strong></p>
-        <p><strong>Email address:</strong></p>
+        <p><strong>First name: </strong><%= schedules[0].first_name %></p>
+        <p><strong>Last name: </strong><%= schedules[0].sur_name %></p>
+        <p><strong>Email address: </strong><%= schedules[0].email %></p>
     </div>
     <table id = "scheduleList">
         <tr>
@@ -41,6 +41,3 @@
         </tr>
         <% }) %> 
       </table>
-      <% } else { %>
-      <h2>There is no schedule</h2>
-      <% } %>

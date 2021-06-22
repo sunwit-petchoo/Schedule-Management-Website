@@ -1,0 +1,18 @@
+<h2>Schedule Management</h2>
+<form action="/schedule" method="POST">
+    <label for="day">day</label><br />
+          <select name="day" id="day">
+            <option value="1">Monday</option>
+            <option value="2">Tuesday</option>
+            <option value="3">Wednesday</option>
+            <option value="4">Thursday</option>
+            <option value="5">Friday</option>
+            <option value="6">Saturday</option>
+            <option value="7">Sunday</option>
+          </select><br />
+    <div>
+        <label for="appt">Choose a time for your meeting:</label>
+        <input type="time" id="appt" name="appt" min="09:00" max="18:00" required>
+    </div>
+    <button type="submit">Add New Schedule</button>
+  </form>
