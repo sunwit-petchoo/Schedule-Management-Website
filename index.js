@@ -12,6 +12,7 @@ const loginRouter = require('./routes/login')
 const logoutRouter = require('./routes/logout')
 //const signupRouter = require('./routes/signup')
 const userRouter = require('./routes/user')
+const schedulesRouter = require('./routes/schedules')
 const errRouter = require('./routes/404')
 
 const app = express()
@@ -48,6 +49,7 @@ app.use('/login', loginRouter)
 app.use('/logout', logoutRouter)
 //app.use('/signup', signupRouter)
 app.use('/user', userRouter)
+app.use('/schedules', schedulesRouter)
 app.use('*', errRouter)
 
 
