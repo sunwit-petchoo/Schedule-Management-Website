@@ -1,0 +1,52 @@
+ROP DATABASE IF EXISTS Project4_database;
+	
+
+	CREATE DATABASE Project4_database CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+	
+
+	USE Project4_database;
+	
+
+	GRANT SELECT, INSERT, UPDATE, DELETE
+		ON Project4_database.*
+		TO 'Project4User'@'localhost'
+		IDENTIFIED BY 'veryLongHardToGuessPassword';
+	
+
+	CREATE TABLE users
+	(
+		user_id SERIAL PRIMARY KEY,
+		first_name VARCHAR(30) DEFAULT "Fname null",
+	    Sur_name VARCHAR(30) DEFAULT "Lname null",
+		email VARCHAR(50),
+		password VARCHAR(255)
+	);
+CREATE TABLE schedules
+(
+       schedule_id SERIAL PRIMARY KEY,
+       user_id INTEGER FOREIGN KEY,
+       day INTEGER NOT NULL CHECK(day>=1 AND day<=7),
+       start_at TIME,
+       end_at TIME
+	);
+
+
+
+
+	
+	
+INSERT INTO users VALUES
+	("Bob", "Smith", "bobsmith@gmail.com", "abcd"),
+	("Sally", "Davis", "sallydavis@gmail.com", "xyz"),
+	("Jim", "Holden", "jimholden@gmail.com", "yzx"),
+(“Tom”, “Mcdonald”, “tommcdonald@gmail.com”,”h7y”)
+(“ben”, “Why”, benwhy@gmail.com,”hws”)
+
+
+INSERT INTO schedules VALUES
+	("1", "1", "1", "08:00:00",”18:00:00”),
+	("2", "2", "2", "08:00:00",”18:00:00”),
+	("3", "2", "3", “08:00:00”,”18:00:00”),
+(“4”,”1”,”4”, “08:00:00”, “18:00:00”),
+(“5”,”3”,”5”,”08:00:00”,”18:00:00”);
+
