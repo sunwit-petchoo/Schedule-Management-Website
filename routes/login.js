@@ -20,16 +20,28 @@ router.post('/', redirectToHome, (req, res) =>{
       // if so, does password match user password?
         const email = existingUser.email
         const userId = existingUser.id
-        const password = existingUser.password
+        const hash = existingUser.password
         
-        if(req.body.password === password){
+       /*  if(req.body.password === password){
             req.session.userId = existingUser.user_id
             console.log(req.session)
             console.log(password)
             res.redirect('/')
         }else{
             res.redirect('/login?message=Incorrect%20login%20details.')
-        }
+        } */
+        
+        bcrypt.compare(req.body.password, hash, function(err, result) {
+          if (result) {
+            // if successful, create session and redirect
+            req.session.userId = existingUser.user_id
+            res.redirect('/')
+    
+          } else {
+            console.log(err)
+            res.redirect('/login?message=Incorrect%20login%20details.')
+          }
+        })
     })
     .catch((err) => {
       // couldn't query the database properly

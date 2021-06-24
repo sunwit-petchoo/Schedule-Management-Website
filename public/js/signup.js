@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     const passwordValidation = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
     form.setAttribute("novalidate", true)
-    console.log(form)
     form.onsubmit = (e) => {
       let validate = true
       let msg = ""
@@ -56,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
 
       if (validate) {
-        signupMsg.innerHTML = "Yeah"
         return true
       }
     }
