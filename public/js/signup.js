@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // DOM elements
     const form = document.querySelector("form")
     const signupMsg = document.querySelector("#signupMsg")
+    signupMsg.style.display = "none"
     const name = document.querySelector("#fname")
     const surname = document.querySelector("#sname")
     const email = document.querySelector("#email")
@@ -15,11 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const passwordValidation = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
     form.setAttribute("novalidate", true)
     form.onsubmit = (e) => {
+      e.preventDefault()
       let validate = true
       let msg = ""
       if (!nameValidation.test(name.value))
       {
         validate = false
+        signupMsg.style.display = "block"
         signupMsg.innerHTML = "First name is not valid. Please try again."
         name.focus()
         return
@@ -27,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!nameValidation.test(surname.value))
       {
         validate = false
+        signupMsg.style.display = "block"
         signupMsg.innerHTML = "Last name is not valid. Please try again."
         surname.focus()
         return
@@ -34,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!emailValidation.test(email.value.toLowerCase())) 
       {
         validate = false
+        signupMsg.style.display = "block"
         signupMsg.innerHTML = "Please enter a valid email address."
         email.focus()
         return
@@ -41,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!passwordValidation.test(password.value)) 
       {
         validate = false
+        signupMsg.style.display = "block"
         signupMsg.innerHTML = "Please enter a valid password."
         password.focus()
         return
@@ -48,14 +54,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if(password.value != confirmPassword.value)
       {
         validate = false
+        signupMsg.style.display = "block"
         signupMsg.innerHTML = "Passwords do not match. Please try again"
         confirmPassword.focus()
         return
       }
-  
-
+      console.log(validate)
       if (validate) {
-        return true
+       form.submit() 
       }
     }
   })

@@ -5,7 +5,15 @@ const bcrypt = require('bcrypt')
 const saltRounds = 10;
 
 router.get('/', (req, res) => {
-    res.render('pages/signup', { layout:'./layouts/full-width' })
+    const msg = req.flash('message')
+    const msgStatus =  req.flash('alert')
+    console
+    res.render('pages/signup', { 
+        message: msg,
+        msgStatus: msgStatus,
+        layout:'./layouts/full-width',
+        userId: "" 
+    })
 })
 
 router.post('/', (req, res) =>{
@@ -17,22 +25,25 @@ router.post('/', (req, res) =>{
          .then((results) =>{
             
             if(results[0].count > 0){
-               // handle error user email exist
-               console.log("sssssss") 
+                req.flash('message', 'email address already exists. Please try again ');
+                req.flash('alert', 'alert-danger')
+                return res.redirect('/signup')
             }else{
                 bcrypt.hash(password, saltRounds, function(err, hash) {
                     db.none("INSERT INTO users (sur_name, first_name, email, password) VALUES ( $1, $2, $3, $4);", [sname,fname,email,hash])
                      .then(() =>{
-                      res.redirect('/login')
+                         req.flash('message', 'Congratulations !!! your account has been successfully created. Please login to continue.');
+                         req.flash('alert', 'alert-success')
+                         return res.redirect('/login')
                      })
                      .catch((err) => {
-                        res.send(err.message)
+                        res.redirect('/error')
                     })
                 });
             }
          })
          .catch((err) => {
-            res.send(err.message)
+            res.redirect('/error')
         })
 })
 module.exports = router

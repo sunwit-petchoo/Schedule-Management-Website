@@ -4,14 +4,10 @@ const { redirectToLogin } = require('../middlewares/auth')
 const db = require('../database')
 
 router.get('/', redirectToLogin, (req, res) => {
-    req.session.destroy(function(err) {
-        if (err) {
-            res.redirect('/error')
-        } else {
-          res.clearCookie('mcoffee_sid')
-          res.redirect('/login')
-        }
-      })
+    res.render('pages/error',{
+        userId: req.session.userId,
+        layout:'./layouts/full-width' 
+    })
 })
 
 module.exports = router

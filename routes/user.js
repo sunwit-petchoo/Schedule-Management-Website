@@ -11,16 +11,17 @@ router.get('/:id(\\d+)', redirectToLogin, (req, res) => {
         if(schedules.length > 0){
             res.render('pages/user',{
                 schedules: schedules,
+                userId: req.session.userId,
                 layout:'./layouts/full-width' 
                 
             })
         }else{
-            res.redirect('/404')
+            res.redirect('/error')
         }
        
      })
      .catch((err) => {
-        res.send(err.message)
+        res.redirect('/error')
     })
     })
 

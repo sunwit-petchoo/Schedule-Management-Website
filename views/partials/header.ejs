@@ -1,0 +1,25 @@
+<header id="header" class="row align-items-center">
+    <div class="col-xl col-md col-sm-12">
+      <img id="logo-header" src="/assets/full_logo_white.png" alt="Mr. Coffee logo with the text MR. COFFEE in white color">
+    </div>
+    <% if(userId) { %>
+    <div class="col-xl-auto col-md-auto col-sm-12">
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="/" >Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/schedules">Schedule Management</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/logout">Log out</a>
+        </li>
+      </ul>
+    </div>
+    <% } else { %>
+    <div class="col-xl-auto col-md-auto col-sm-12">
+      MR.COFFEE Schedule Management
+    </div>
+    <% } %>
+</header>
+<br>

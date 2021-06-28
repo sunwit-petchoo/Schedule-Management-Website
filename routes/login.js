@@ -5,31 +5,37 @@ const bcrypt = require('bcrypt')
 const { redirectToHome } = require('../middlewares/auth')
 
 router.get('/', redirectToHome, (req, res) => {
-    res.render('pages/login', { layout:'./layouts/full-width' })
+    const msg = req.flash('message')
+    const msgStatus =  req.flash('alert')
+    res.render('pages/login',  {
+      message: msg,
+      msgStatus: msgStatus,
+      userId: "",
+      layout:'./layouts/full-width' 
+    })
 })
 
 router.post('/', redirectToHome, (req, res) =>{
+    
+    if(req.body.email === "" || req.body.password === "")
+    {
+        req.flash('message', 'Your authentication information is incorrect. Please try again.');
+        req.flash('alert', 'alert-danger')
+        return res.redirect('/login') 
+    }
     db.oneOrNone('SELECT * FROM users WHERE email = $1', [req.body.email.toLowerCase()])
     .then((existingUser) => {
       // if not, return error
-      
       if (!existingUser) {
-        return res.redirect('/login?message=Incorrect%20login%20details.')
+        req.flash('message', 'Your authentication information is incorrect. Please try again.');
+        req.flash('alert', 'alert-danger')
+        return res.redirect('/login')
       }
   
       // if so, does password match user password?
         const email = existingUser.email
         const userId = existingUser.id
         const hash = existingUser.password
-        
-       /*  if(req.body.password === password){
-            req.session.userId = existingUser.user_id
-            console.log(req.session)
-            console.log(password)
-            res.redirect('/')
-        }else{
-            res.redirect('/login?message=Incorrect%20login%20details.')
-        } */
         
         bcrypt.compare(req.body.password, hash, function(err, result) {
           if (result) {
@@ -38,14 +44,15 @@ router.post('/', redirectToHome, (req, res) =>{
             res.redirect('/')
     
           } else {
-            console.log(err)
-            res.redirect('/login?message=Incorrect%20login%20details.')
+            req.flash('message', 'Your authentication information is incorrect. Please try again.');
+            req.flash('alert', 'alert-danger')
+            return res.redirect('/login')
           }
         })
     })
     .catch((err) => {
       // couldn't query the database properly
-      res.send(err.message)
+      res.redirect('/error')
     })
 })
 module.exports = router

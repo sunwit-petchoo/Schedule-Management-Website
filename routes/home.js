@@ -11,12 +11,13 @@ const query = "SELECT u.user_id as user_id, CONCAT(sur_name,' ', first_name) AS 
  .then((schedules) =>{
     res.render('pages/home',{
         schedules: schedules,
+        userId: req.session.userId,
         layout:'./layouts/full-width' 
         
     })
  })
  .catch((err) => {
-    res.send(err.message)
+    res.redirect('/error')
 })
 })
 

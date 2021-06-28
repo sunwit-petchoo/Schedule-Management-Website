@@ -1,0 +1,60 @@
+
+/* 
+// X-Small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) { ... } 
+*/
+
+/* Apply styles starting from X-Small devices and up to Small devices devices */
+@media (max-width: 767.98px) { 
+    #logo-header {
+        width: 30%;
+    }
+    #header {
+        text-align: center;
+    }
+    #logo-footer {
+        width: 8%;
+    }
+    .logo-social {
+        width: 5%;
+    }
+}
+/* Apply styles for medium devices */
+@media (min-width: 768px) and (max-width: 991.98px) { 
+    #logo-header {
+        width: 35%;
+    }
+    #logo-footer {
+        width: 5%;
+    }
+    .logo-social {
+        width: 4%;
+    }
+}
+/* Apply styles starting for Large devices */
+@media (min-width: 992px) and (max-width: 1198.98px) { 
+    #logo-footer {
+        width: 5%;
+    }
+}
+/* Apply styles starting from X-Large devices and up to XX-Large devices devices */
+@media (min-width: 1200px) { 
+
+}
+    
+
