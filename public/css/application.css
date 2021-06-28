@@ -1,0 +1,27 @@
+/* HEADER */
+#header, #footer {
+    background-color: #6B7B8C;
+    color: #FFF;
+    padding: 1%;
+}
+
+#logo-header {
+    width: 13%;
+}
+
+/* FOOTER */
+#logo-footer {
+    width: 35%;
+}
+.logo-social {
+    width: 2%;
+}
+
+/* ALERT */
+.alert {
+    margin-top: 1rem;
+}
+
+
+
+
