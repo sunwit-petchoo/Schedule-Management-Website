@@ -4,7 +4,7 @@
 Install dependencies 
 ```
 npm install
-
+```
 Create databse and initial table
 
 npm run create-db
